@@ -7,8 +7,8 @@ from multiprocessing import Pool, Lock, Process
 from shutil import rmtree
 
 def check_install():
-    o = os.system("yn004 &> /dev/null")
-    return(o)
+    o = os.popen("yn004")
+    return(o.readlines())
 
 def cmd_constructor():
     ctl = """seqfile = infile
@@ -65,12 +65,9 @@ def masterfn(lock, seqs):
     rmtree(dirname)
 
 if __name__ == "__main__":
-    sig = check_install()
-    if sig != 255:
+    o = check_install()
+    if len(o) != 5:
         print("PAML is not properly install or accessible through the $PATH")
-        sys.exit()
-    else:
-        print(sig)
         sys.exit()
     lock = Lock()
     with open(sys.argv[1],"r") as f:
