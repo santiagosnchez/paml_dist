@@ -58,7 +58,7 @@ def masterfn(lock, seqs):
     rmtree(dirname)
 
 if __name__ == "__main__":
-    lock = Lock
+    lock = Lock()
     with open(sys.argv[1],"r") as f:
         lines = f.readlines()
     for i in range(0,len(lines),4):
