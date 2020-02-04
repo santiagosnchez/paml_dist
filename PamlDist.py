@@ -1,7 +1,14 @@
+# PamlDist.py
+# Wrapper for PAML to get dN/dS estimates
+
 import os
 import sys
 from multiprocessing import Pool, Lock, Process
 from shutil import rmtree
+
+def check_install():
+    o = os.system("yn003")
+    return(o)
 
 def cmd_constructor():
     ctl = """seqfile = infile
@@ -58,6 +65,10 @@ def masterfn(lock, seqs):
     rmtree(dirname)
 
 if __name__ == "__main__":
+    sig = check_install()
+    if sig != 255:
+        print("PAML is not properly install or accessible through the $PATH")
+        sys.exit()
     lock = Lock()
     with open(sys.argv[1],"r") as f:
         lines = f.readlines()
