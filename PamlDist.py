@@ -42,7 +42,7 @@ def single_output_to_screen(lock, seq1, seq2, dn, ds):
 
 def masterfn(lock, seqs):
     pid = os.getpid()
-    dirname = "tmp."+pid
+    dirname = "tmp."+str(pid)
     os.makedirs(dirname)
     os.chdir(dirname)
     for i in range(1,len(seqs),2): seqs[i] = fix_codons(seqs[i].rstrip()) + "\n"
