@@ -4,14 +4,12 @@ from multiprocessing import Pool, Lock, Process
 from shutil import rmtree
 
 def cmd_constructor():
-    ctl = """
-    seqfile = infile
-    outfile = outfile
-    verbose = 0
-    icode = 0
-    weighting = 1
-    commonf3x4 = 0
-    """
+    ctl = """seqfile = infile
+outfile = outfile
+verbose = 0
+icode = 0
+weighting = 1
+commonf3x4 = 0"""
     cmd = "echo \'" + ctl + "\'" + " | yn00 /dev/stdin &> /dev/null"
     return(cmd)
 
@@ -47,7 +45,7 @@ def masterfn(lock, seqs):
     os.makedirs(dirname)
     os.chdir(dirname)
     for i in range(1,len(seqs),2): seqs[i] = fix_codons(seqs[i].rstrip()) + "\n"
-    with open("inputfile","w") as f:
+    with open("infile","w") as f:
         for i in seqs: f.write(i)
     cmd = cmd_constructor()
     sig = os.system(cmd)
@@ -58,7 +56,7 @@ def masterfn(lock, seqs):
         print(seq1, seq2, dn, ds, sep=",")
         #single_output_to_screen(lock, seq1, seq2, dn, ds)
     os.chdir("../")
-    #rmtree(dirname)
+    rmtree(dirname)
 
 if __name__ == "__main__":
     lock = Lock
