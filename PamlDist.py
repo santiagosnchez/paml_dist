@@ -53,8 +53,7 @@ def masterfn(lock, seqs):
         dn,ds = retrieve_from_output()
         seq1 = seqs[0][1:].rstrip()
         seq2 = seqs[2][1:].rstrip()
-        print(seq1, seq2, dn, ds, sep=",")
-        #single_output_to_screen(lock, seq1, seq2, dn, ds)
+        single_output_to_screen(lock, seq1, seq2, dn, ds)
     os.chdir("../")
     rmtree(dirname)
 
