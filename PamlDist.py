@@ -65,8 +65,7 @@ def masterfn(lock, seqs):
     rmtree(dirname)
 
 if __name__ == "__main__":
-    o = check_install()
-    if "paml version" not in o[0]:
+    if "paml version" not in check_install()[0]:
         print("PAML is not properly install or accessible through the $PATH")
         sys.exit()
     lock = Lock()
