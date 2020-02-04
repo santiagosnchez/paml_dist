@@ -58,7 +58,7 @@ def masterfn(lock, seqs):
     os.chdir("../")
     os.rmdir(dirname)
 
-if __main__ == "__name__":
+if __name__ == "__main__":
     lock = Lock
     with open(sys.argv[1],"r") as f:
         lines = f.readlines()
