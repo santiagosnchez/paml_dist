@@ -26,10 +26,10 @@ def fix_codons(seq):
 def retrieve_from_output():
     with open("2YN.dN","r") as f:
         dn = f.readlines()
-        dn = dn[2].split(" ")[-1]
+        dn = dn[2].split(" ")[-1].rstrip()
     with open("2YN.dS","r") as f:
         ds = f.readlines()
-        ds = ds[2].split(" ")[-1]
+        ds = ds[2].split(" ")[-1].rstrip()
     return(dn,ds)
 
 def single_output_to_screen(lock, seq1, seq2, dn, ds):
