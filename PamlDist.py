@@ -14,8 +14,6 @@ def cmd_constructor():
     cmd = "echo \'" + ctl + "\'" + " | yn00 /dev/stdin &> /dev/null"
     return(cmd)
 
-sd
-
 def fix_codons(seq):
     for i in range(0,len(seq),3):
         if "N" in seq[i:i+3]:
