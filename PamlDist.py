@@ -1,6 +1,7 @@
 import os
 import sys
 from multiprocessing import Pool, Lock, Process
+from shutil import rmtree
 
 def cmd_constructor():
     ctl = """
@@ -56,7 +57,7 @@ def masterfn(lock, seqs):
         seq2 = seqs[2][1:].rstrip()
         single_output_to_screen(lock, seq1, seq2, dn, ds)
     os.chdir("../")
-    os.rmdir(dirname)
+    rmtree(dirname)
 
 if __name__ == "__main__":
     lock = Lock
