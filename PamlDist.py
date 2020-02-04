@@ -58,7 +58,7 @@ def masterfn(lock, seqs):
         print(seq1, seq2, dn, ds, sep=",")
         #single_output_to_screen(lock, seq1, seq2, dn, ds)
     os.chdir("../")
-    rmtree(dirname)
+    #rmtree(dirname)
 
 if __name__ == "__main__":
     lock = Lock
