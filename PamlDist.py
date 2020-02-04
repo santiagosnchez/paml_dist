@@ -7,7 +7,7 @@ from multiprocessing import Pool, Lock, Process
 from shutil import rmtree
 
 def check_install():
-    o = os.popen("yn004")
+    o = os.popen("yn00")
     return(o.readlines())
 
 def cmd_constructor():
