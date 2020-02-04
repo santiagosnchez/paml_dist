@@ -40,7 +40,7 @@ def single_output_to_screen(lock, seq1, seq2, dn, ds):
      finally:
          lock.release()
 
-def masterfn(seqs):
+def masterfn(lock, seqs):
     pid = os.getpid()
     dirname = "tmp."+pid
     os.makedirs(dirname)
@@ -54,5 +54,16 @@ def masterfn(seqs):
         dn,ds = retrieve_from_output()
         seq1 = seqs[0][1:].rstrip()
         seq2 = seqs[2][1:].rstrip()
+        single_output_to_screen(lock, seq1, seq2, dn, ds)
     os.chdir("../")
     os.rmdir(dirname)
+
+if __main__ == "__name__":
+    lock = Lock
+    with open(sys.argv[1],"r") as f:
+        lines = f.readlines()
+    for i in range(0,len(lines),4):
+        seqs = lines[i:i+4]
+        p = Process(target=masterfn, args=(lock, seqs))
+        p.start()
+    p.join()
